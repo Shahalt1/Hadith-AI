@@ -5,6 +5,10 @@ import chromadb
 from dotenv import load_dotenv
 from os import getenv
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 load_dotenv()
 api_key = getenv("GEMINI_API_KEY")
 collection = chromadb.PersistentClient('vdb').get_collection("hadith-collection")
