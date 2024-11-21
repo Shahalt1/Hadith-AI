@@ -11,7 +11,7 @@ sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 load_dotenv()
 api_key = getenv("GEMINI_API_KEY")
-collection = chromadb.PersistentClient('vdb').get_collection("hadith-collection")
+collection = chromadb.PersistentClient('vectordb').get_collection("hadith-collection")
 
 def stream_data(response):
     for word in response.split(" "):

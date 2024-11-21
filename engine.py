@@ -66,4 +66,4 @@ def upsert_data(df):
             ]
         )
 
-upsert_data(df)
+# upsert_data(df)
