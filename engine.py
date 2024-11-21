@@ -1,11 +1,10 @@
 import requests 
 from bs4 import BeautifulSoup
-from langchain_core.documents import Document
-from helper_utilities import get_contents, fetch_hadith_collection, get_category_links
+# from langchain_core.documents import Document
+# from helper_utilities import get_contents, fetch_hadith_collection, get_category_links
 import re
 from tqdm import tqdm
-from chromadb import PersistentClient
-from chromadb.utils import embedding_functions
+from chromadb import PersistentClient # v4.0.0
 import pandas as pd
 
 
@@ -52,7 +51,7 @@ def create_csv_from_documents(documents, filename="output.csv"):
 df = pd.read_csv('output.csv')
 df.reset_index(inplace=True)
 
-client = PersistentClient("vdb", )
+client = PersistentClient("vectordb", )
 # client.delete_collection(name="hadith-collection")
 collection = client.get_or_create_collection("hadith-collection", metadata={"hnsw:space": "cosine"})
 
@@ -67,4 +66,4 @@ def upsert_data(df):
             ]
         )
 
-# upsert_data(df)
+upsert_data(df)
